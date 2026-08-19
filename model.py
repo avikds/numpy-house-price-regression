@@ -194,8 +194,30 @@ def make_shuffled_indices(n_samples, seed):
 
     return rng.permutation(n_samples)
 
-# Step 11 - partition_indices (not yet solved)
-# TODO: implement
+# Step 11 - partition_indices
+def partition_indices(indices, train_ratio, val_ratio):
+    """Split indices into train, validation, and test subsets.
+
+    Args:
+        indices: 1-D array-like of row indices.
+        train_ratio: Fraction of samples assigned to training.
+        val_ratio: Fraction of samples assigned to validation.
+
+    Returns:
+        train_idx, val_idx, test_idx: 1-D integer ndarrays forming a partition.
+    """
+    indices = np.asarray(indices, dtype=int)
+
+    n_samples = len(indices)
+
+    train_end = int(np.floor(n_samples * train_ratio))
+    val_end = train_end + int(np.floor(n_samples * val_ratio))
+
+    train_idx = indices[:train_end]
+    val_idx = indices[train_end:val_end]
+    test_idx = indices[val_end:]
+
+    return train_idx, val_idx, test_idx
 
 # Step 12 - subset_xy (not yet solved)
 # TODO: implement
