@@ -307,8 +307,27 @@ def root_mean_squared_error(y_true, y_pred):
 
     return float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
 
-# Step 17 - r_squared (not yet solved)
-# TODO: implement
+# Step 17 - r_squared
+def r_squared(y_true, y_pred):
+    """Compute the coefficient of determination (R^2).
+
+    Args:
+        y_true: (N,) array-like of true target values.
+        y_pred: (N,) array-like of predicted target values.
+
+    Returns:
+        float: R^2 value, or 0.0 when SS_tot is exactly zero.
+    """
+    y_true = np.asarray(y_true, dtype=float)
+    y_pred = np.asarray(y_pred, dtype=float)
+
+    ss_res = np.sum((y_true - y_pred) ** 2)
+    ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+
+    if ss_tot == 0:
+        return 0.0
+
+    return float(1.0 - ss_res / ss_tot)
 
 # Step 18 - residual_summary (not yet solved)
 # TODO: implement
