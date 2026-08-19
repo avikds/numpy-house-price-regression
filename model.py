@@ -90,8 +90,21 @@ def make_ratio_feature(numerator, denominator, eps=1e-8):
 
     return numerator / (denominator + eps)
 
-# Step 5 - append_column (not yet solved)
-# TODO: implement
+# Step 5 - append_column
+def append_column(X, col):
+    """Horizontally append one 1-D feature column onto a design matrix.
+
+    Args:
+        X: (N, F) array-like design matrix.
+        col: (N,) array-like feature column.
+
+    Returns:
+        (N, F+1) ndarray with col appended as the last column.
+    """
+    X = np.asarray(X, dtype=float)
+    col = np.asarray(col, dtype=float).reshape(-1, 1)
+
+    return np.hstack((X, col))
 
 # Step 6 - one_hot_encode (not yet solved)
 # TODO: implement
