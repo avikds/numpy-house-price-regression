@@ -30,8 +30,29 @@ def impute_nan_with_mean(X):
 
     return X
 
-# Step 2 - compute_iqr_bounds (not yet solved)
-# TODO: implement
+# Step 2 - compute_iqr_bounds
+def compute_iqr_bounds(X, k=1.5):
+    """Compute per-column outlier clip bounds using the IQR rule.
+
+    Args:
+        X: (N, F) array-like of numeric features.
+        k: IQR multiplier, default 1.5.
+
+    Returns:
+        lower: (F,) ndarray of lower bounds.
+        upper: (F,) ndarray of upper bounds.
+    """
+    X = np.asarray(X, dtype=float)
+
+    q1 = np.percentile(X, 25, axis=0)
+    q3 = np.percentile(X, 75, axis=0)
+
+    iqr = q3 - q1
+
+    lower = q1 - k * iqr
+    upper = q3 + k * iqr
+
+    return lower, upper
 
 # Step 3 - clip_columns (not yet solved)
 # TODO: implement
