@@ -73,8 +73,22 @@ def clip_columns(X, lower, upper):
 
     return np.clip(X, lower, upper)
 
-# Step 4 - make_ratio_feature (not yet solved)
-# TODO: implement
+# Step 4 - make_ratio_feature
+def make_ratio_feature(numerator, denominator, eps=1e-8):
+    """Form a derived ratio feature using safe division.
+
+    Args:
+        numerator: (N,) array-like numerator values.
+        denominator: (N,) array-like denominator values.
+        eps: Small value added to the denominator for numerical safety.
+
+    Returns:
+        (N,) ndarray containing numerator / (denominator + eps).
+    """
+    numerator = np.asarray(numerator, dtype=float)
+    denominator = np.asarray(denominator, dtype=float)
+
+    return numerator / (denominator + eps)
 
 # Step 5 - append_column (not yet solved)
 # TODO: implement
