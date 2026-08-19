@@ -163,8 +163,21 @@ def apply_standardizer(X, mean, std):
 
     return (X - mean) / std
 
-# Step 9 - add_bias_column (not yet solved)
-# TODO: implement
+# Step 9 - add_bias_column
+def add_bias_column(X):
+    """Prepend a column of ones to a 2-D feature matrix.
+
+    Args:
+        X: (N, F) array-like feature matrix.
+
+    Returns:
+        (N, F+1) ndarray with a bias column of 1.0 prepended.
+    """
+    X = np.asarray(X, dtype=float)
+
+    bias = np.ones((X.shape[0], 1), dtype=float)
+
+    return np.hstack((bias, X))
 
 # Step 10 - make_shuffled_indices (not yet solved)
 # TODO: implement
