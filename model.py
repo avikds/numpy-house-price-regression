@@ -145,8 +145,23 @@ def fit_standardizer(X):
 
     return mean, std
 
-# Step 8 - apply_standardizer (not yet solved)
-# TODO: implement
+# Step 8 - apply_standardizer
+def apply_standardizer(X, mean, std):
+    """Standardize a numeric feature matrix using fitted column statistics.
+
+    Args:
+        X: (N, F) array-like of numeric features.
+        mean: (F,) array-like of column means.
+        std: (F,) array-like of column standard deviations.
+
+    Returns:
+        (N, F) ndarray containing (X - mean) / std.
+    """
+    X = np.asarray(X, dtype=float)
+    mean = np.asarray(mean, dtype=float)
+    std = np.asarray(std, dtype=float)
+
+    return (X - mean) / std
 
 # Step 9 - add_bias_column (not yet solved)
 # TODO: implement
