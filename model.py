@@ -238,8 +238,26 @@ def subset_xy(X, y, indices):
 
     return X[indices], y[indices]
 
-# Step 13 - ols_fit (not yet solved)
-# TODO: implement
+# Step 13 - ols_fit
+def ols_fit(X, y):
+    """Return the ordinary-least-squares weight vector.
+
+    Args:
+        X: (N, D) design matrix including a bias column.
+        y: (N,) target vector.
+
+    Returns:
+        theta: (D,) OLS weight vector.
+    """
+    X = np.asarray(X, dtype=float)
+    y = np.asarray(y, dtype=float)
+
+    xtx = X.T @ X
+    xty = X.T @ y
+
+    theta = np.linalg.solve(xtx, xty)
+
+    return theta
 
 # Step 14 - ols_predict (not yet solved)
 # TODO: implement
