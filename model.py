@@ -371,8 +371,35 @@ def prepare_cleaned_features(X, iqr_k=1.5):
 
     return X_clean
 
-# Step 20 - assemble_feature_matrix (not yet solved)
-# TODO: implement
+# Step 20 - assemble_feature_matrix
+import numpy as np
+
+def assemble_feature_matrix(X_num, ratio_num_idx, ratio_den_idx, cat_labels=None):
+    """Build an extended feature matrix with a ratio and optional categorical block.
+
+    Args:
+        X_num: (N, F) numeric feature matrix.
+        ratio_num_idx: Column index used as the ratio numerator.
+        ratio_den_idx: Column index used as the ratio denominator.
+        cat_labels: Optional (N,) categorical labels.
+
+    Returns:
+        (N, F+1) ndarray, or (N, F+1+C) when categoricals are included.
+    """
+    X_num = np.asarray(X_num, dtype=float)
+
+    ratio = make_ratio_feature(
+        X_num[:, ratio_num_idx],
+        X_num[:, ratio_den_idx]
+    )
+
+    X_extended = append_column(X_num, ratio)
+
+    if cat_labels is not None:
+        cat_one_hot = one_hot_encode(cat_labels)
+        X_extended = np.hstack((X_extended, cat_one_hot))
+
+    return X_extended
 
 # Step 21 - make_train_val_test (not yet solved)
 # TODO: implement
