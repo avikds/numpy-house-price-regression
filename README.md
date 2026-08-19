@@ -35,6 +35,14 @@ python scaffold.py
 - [x] **23.** evaluate_predictions
 - [x] **24.** house_price_pipeline
 
----
+## Results
 
-Built on Deep-ML.
+```
+Test metrics:
+  MAE : 7.5344
+  RMSE: 21.5012
+  R^2 : 0.8443
+Residual summary: {'mean': 3.06561831487098, 'std': 21.28155458736743, 'median_abs': 3.155285521877076}
+y_test[:5]: [258.932 248.944 196.558 112.379 290.543]
+y_pred[:5]: [253.85  250.154 208.009 113.175 287.709]
+```
